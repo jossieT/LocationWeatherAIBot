@@ -3,6 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const axios = require('axios');
 const OpenAI = require('openai');
+const fs = require('fs');
 
 const PORT = process.env.PORT || 8000;
 

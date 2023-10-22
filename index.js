@@ -1,9 +1,16 @@
 require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
 const axios = require('axios');
-const { parseZone } = require('moment-timezone');
 const OpenAI = require('openai');
 
+const PORT = process.env.PORT || 8000;
+
+// creating server
+const app = express();
+app.listen(PORT, ()=>{
+  console.log(` Bot server running on ${PORT}`)
+});
 //Telegram bot token
 const token = process.env.TELEGRAM_BOT_TOKEN;
 
@@ -116,12 +123,12 @@ bot.on('location', (msg) => {
 
     // Do something with the extracted data
     bot.sendMessage(msg.chat.id,
-      `You are currently Located at:
-       Country: <b>${address.country}</b>
-       Region: <b>${address.state}</b>
-       City: <b>${address.state_district}</b>
-       Sub City: <b>${address.county}</b>
-       Street: <b>${address.suburb}</b>`,
+    `You are currently Located at:
+    Country: <b>${address.country}</b>
+    Region: <b>${address.state}</b>
+    City: <b>${address.state_district}</b>
+    Sub City: <b>${address.county}</b>
+    Street: <b>${address.suburb}</b>`,
        { parse_mode: "HTML" }
     )
 
